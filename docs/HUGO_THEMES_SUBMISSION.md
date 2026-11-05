@@ -1,6 +1,11 @@
-# Hugo Themes 收录准备
+# Hugo Themes 收录进度
 
-核对日期：2026-11-05。状态：已准备申请材料，尚未向官方提交 PR。
+核对日期：2026-11-05。状态：已提交 [Add Chipaper #830](https://github.com/gohugoio/hugoThemesSiteBuilder/pull/830)，Netlify deploy preview 已通过，等待维护者审核合并。
+
+- [Chipaper 目录预览](https://deploy-preview-830--hugothemes.netlify.app/themes/chipaper/)
+- [Netlify 构建日志](https://app.netlify.com/projects/hugothemes/deploys/6aec6d41a13d6d5b7a6fa550)
+
+本次 `deploy/netlify`、Header rules 和 Redirect rules 均成功，Pages changed 以 neutral 完成；目录预览中的截图、主题元数据、源码和 Demo 链接已核对。提交 PR 和预览成功不代表已经收录。
 
 当前入口是 [gohugoio/hugoThemesSiteBuilder](https://github.com/gohugoio/hugoThemesSiteBuilder)，不是已经归档的 `gohugoio/hugoThemes`。以[官方 Adding a theme 与验收规则](https://github.com/gohugoio/hugoThemesSiteBuilder#adding-a-theme)为准。
 
