@@ -1,0 +1,7 @@
+{{- $sections := site.MainSections | default (slice "posts") -}}
+{{- $name := index $sections 0 -}}
+{{- $url := printf "%s/" $name | relURL -}}
+{{- with site.GetPage $name -}}
+  {{- $url = .RelPermalink -}}
+{{- end -}}
+{{- return $url -}}

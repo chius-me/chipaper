@@ -4,9 +4,9 @@ A small, independent, Chinese-first Hugo blog theme inspired by
 [AstroPaper](https://github.com/satnaing/astro-paper) and
 [Archie](https://github.com/athul/archie).
 
-[Live demo](https://chius-me.github.io/chipaper/) · [Chius's blog](https://chius.cc/) · [中文文档](README.md)
+[Live demo](https://chius-me.github.io/chipaper/) · [Chius's blog](https://chius.cc/) · [中文文档](https://github.com/chius-me/chipaper/blob/main/README.md)
 
-![Chipaper home page](images/screenshot.jpg)
+![Chipaper home page](https://raw.githubusercontent.com/chius-me/chipaper/main/images/screenshot.jpg)
 
 Chipaper pairs **Google Sans Code** with **Sarasa Mono SC** for Latin text,
 Chinese, and code. Fonts are self-hosted and split by Unicode range. It offers
@@ -36,11 +36,11 @@ git submodule add https://github.com/chius-me/chipaper.git themes/chipaper
 
 Set `theme = "chipaper"`, enable `hasCJKLanguage`, include `JSON` in home
 outputs, and set `markup.highlight.noClasses = false`. See the complete
-[example config](exampleSite/hugo.toml). Its `themesDir = "../.."` is only
+[example config](https://github.com/chius-me/chipaper/blob/main/exampleSite/hugo.toml). Its `themesDir = "../.."` is only
 for running the repository demo; omit that option in an ordinary blog.
 
 Posts live in `content/posts/`. Copy the archive, search, about, posts index,
-and tags index pages from [`exampleSite/content`](exampleSite/content/).
+and tags index pages from [`exampleSite/content`](https://github.com/chius-me/chipaper/tree/main/exampleSite/content/).
 Article front matter supports standard Hugo fields and `description` for the
 home excerpt. Per-post `showComments: false` disables comments.
 
@@ -53,6 +53,7 @@ home excerpt. Per-post `showComments: false` disables comments.
   motto = "Write about the things you care about."
   recentCount = 7
   showRSS = true
+  showTags = true
   comments = false
 
 [[params.social]]
@@ -90,7 +91,7 @@ Hugo builds consume the committed font files directly.
 
 ## Demo deployment and updates
 
-The [Pages workflow](.github/workflows/pages.yml) builds the example site on
+The [Pages workflow](https://github.com/chius-me/chipaper/blob/main/.github/workflows/pages.yml) builds the example site on
 push/PR and deploys `main` pushes to GitHub Pages. Enable **GitHub Actions**
 as the Pages source in a fork's repository settings. The workflow gets the
 actual base URL from Pages and supports project subpaths.
@@ -100,6 +101,23 @@ preview locally, then commit the new submodule pointer in your blog.
 
 ## Credits and license
 
-Theme code is [MIT](LICENSE); fonts retain their SIL Open Font Licenses.
-See [third-party notices](THIRD_PARTY_NOTICES.md) for upstream projects,
+Chipaper implements its own Hugo templates and browser interactions while
+drawing visual inspiration from AstroPaper and Archie. Its focus is mixed
+Chinese/Latin typography, self-hosted Unicode font slices, and a Hugo build
+without a Node pipeline.
+
+Theme code is [MIT](https://github.com/chius-me/chipaper/blob/main/LICENSE); fonts retain their SIL Open Font Licenses.
+See [third-party notices](https://github.com/chius-me/chipaper/blob/main/THIRD_PARTY_NOTICES.md) for upstream projects,
 source references, and complete license files.
+
+## Optional tags and archives
+
+Set `params.chipaper.showTags = false` to hide article tags and exclude tags
+from the search index. Set root-level `disableKinds = ["taxonomy", "term"]`
+to stop generating taxonomy pages, then remove the archive/tag menu entries
+and corresponding content pages. The theme and demo retain both features.
+Search falls back to the article list when JavaScript is disabled.
+
+The theme uses Hugo `mainSections` and supports sections named `post`,
+`posts`, or other names. Set root-level `mainSections` to override automatic
+section detection.

@@ -1,6 +1,8 @@
 {{- $items := slice -}}
-{{- range where .Site.RegularPages "Section" "posts" -}}
+{{- range where .Site.RegularPages "Section" "in" .Site.MainSections -}}
   {{- $plain := .Content | replaceRE `<a class="heading-anchor"[^>]*>.*?</a>` "" | replaceRE `</(h[1-6]|p|li|pre|blockquote)>` " " | plainify | htmlUnescape -}}
-  {{- $items = $items | append (dict "title" .Title "url" .RelPermalink "content" $plain "tags" (.Params.tags | default slice) "date" (.Date.Format "2006-01-02")) -}}
+  {{- $tags := slice -}}
+  {{- if ne site.Params.chipaper.showTags false }}{{ $tags = .Params.tags | default slice }}{{ end -}}
+  {{- $items = $items | append (dict "title" .Title "url" .RelPermalink "content" $plain "tags" $tags "date" (.Date.Format "2006-01-02")) -}}
 {{- end -}}
 {{- $items | jsonify -}}

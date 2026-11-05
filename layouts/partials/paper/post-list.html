@@ -6,7 +6,7 @@
         {{ partial "paper/post-meta.html" . }}
         {{ $paragraph := index (findRE "(?s)<p>.*?</p>" .Content 1 | default (slice .Plain)) 0 }}
         <p class="post-summary">{{ .Description | default ($paragraph | plainify | htmlUnescape | truncate 105) }}</p>
-        {{ with .GetTerms "tags" }}<ul class="post-tags" aria-label="标签">{{ range . }}<li><a href="{{ .RelPermalink }}"><span aria-hidden="true">#</span>{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}
+        {{ if ne site.Params.chipaper.showTags false }}{{ with .GetTerms "tags" }}<ul class="post-tags" aria-label="标签">{{ range . }}<li><a href="{{ .RelPermalink }}"><span aria-hidden="true">#</span>{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}{{ end }}
       </article>
     </li>
   {{ end }}

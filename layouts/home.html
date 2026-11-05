@@ -7,9 +7,9 @@
 <section class="recent-posts" aria-labelledby="recent-title">
   <div class="section-heading">
     <h2 id="recent-title"><span class="heading-mark" aria-hidden="true">#</span> 最近的文章</h2>
-    <a class="small-link" href="{{ "posts/" | relURL }}">全部文章 <span aria-hidden="true">↗</span></a>
+    <a class="small-link" href="{{ partial "paper/post-section-url.html" . }}">全部文章 <span aria-hidden="true">↗</span></a>
   </div>
-  {{ $posts := where .Site.RegularPages "Section" "posts" }}
+  {{ $posts := where .Site.RegularPages "Section" "in" .Site.MainSections }}
   {{ partial "paper/post-list.html" ($posts.ByDate.Reverse | first (.Site.Params.chipaper.recentCount | default 7)) }}
 </section>
 {{ end }}
