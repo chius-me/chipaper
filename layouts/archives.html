@@ -1,0 +1,6 @@
+{{ define "main" }}
+<section class="listing-page"><header class="page-header"><p class="eyebrow">ARCHIVE</p><h1>归档<span class="accent">.</span></h1></header>
+{{ range (where .Site.RegularPages "Section" "posts").GroupByDate "2006" }}
+<section class="archive-year"><h2><span class="heading-mark" aria-hidden="true">#</span> {{ .Key }} <small>{{ len .Pages }} 篇</small></h2><ul>{{ range .Pages }}<li><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-02" }}</time><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}</ul></section>
+{{ end }}</section>
+{{ end }}

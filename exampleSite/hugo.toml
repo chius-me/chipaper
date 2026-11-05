@@ -1,0 +1,73 @@
+baseURL = "https://chius-me.github.io/chipaper/"
+title = "Chipaper"
+theme = "chipaper"
+themesDir = "../.."
+locale = "zh-CN"
+defaultContentLanguage = "zh"
+hasCJKLanguage = true
+enableRobotsTXT = true
+summaryLength = 80
+
+[languages.zh]
+  locale = "zh-CN"
+  label = "中文"
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+
+[markup.highlight]
+  noClasses = false
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+
+[params]
+  description = "Chipaper：一个重视中英混排、留白与阅读体验的 Hugo 主题。"
+
+[params.author]
+  name = "Chipaper"
+
+[params.chipaper]
+  greeting = "Hello, I'm Chipaper"
+  motto = "A quiet place for words, code, and ordinary days."
+  recentCount = 7
+  comments = false
+  showRSS = true
+
+[[params.social]]
+  name = "Chipaper on GitHub"
+  icon = "github"
+  url = "https://github.com/chius-me/chipaper"
+
+[[menus.main]]
+  name = "文章"
+  pageRef = "posts"
+  weight = 10
+[[menus.main]]
+  name = "归档"
+  pageRef = "archives"
+  weight = 20
+[[menus.main]]
+  name = "标签"
+  pageRef = "tags"
+  weight = 30
+[[menus.main]]
+  name = "关于"
+  pageRef = "about"
+  weight = 40
+[[menus.main]]
+  name = "GitHub"
+  url = "https://github.com/chius-me/chipaper"
+  weight = 50
+  [menus.main.params]
+    target = "_blank"

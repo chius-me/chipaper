@@ -1,0 +1,24 @@
+{{ define "main" }}
+<article class="single-post">
+  <div class="breadcrumbs"><a href="{{ if eq .Section "posts" }}{{ "posts/" | relURL }}{{ else }}{{ .Site.Home.RelPermalink }}{{ end }}">{{ if eq .Section "posts" }}文章{{ else }}首页{{ end }}</a><span aria-hidden="true">/</span><span>{{ .Title }}</span></div>
+  <header class="post-header">
+    <h1>{{ .Title }}</h1>
+    {{ if eq .Section "posts" }}{{ partial "paper/post-meta.html" . }}{{ end }}
+    {{ with .GetTerms "tags" }}<ul class="post-tags" aria-label="标签">{{ range . }}<li><a href="{{ .RelPermalink }}"><span aria-hidden="true">#</span>{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}
+  </header>
+  {{ if and (eq .Section "posts") (gt (len .Fragments.Headings) 0) }}
+    <details class="post-toc"><summary>目录 <span class="toc-hint">Table of contents</span></summary>{{ .TableOfContents }}</details>
+  {{ end }}
+  <div class="prose">{{ .Content }}</div>
+  {{ if eq .Section "posts" }}
+    <footer class="post-end">
+      <p class="end-mark">写到这里，下次再见<span class="accent" aria-hidden="true">.</span></p>
+      <div class="post-navigation">
+        {{ with .PrevInSection }}<a href="{{ .RelPermalink }}"><span>← 更早的文章</span><strong>{{ .Title }}</strong></a>{{ end }}
+        {{ with .NextInSection }}<a class="next-post" href="{{ .RelPermalink }}"><span>更新的文章 →</span><strong>{{ .Title }}</strong></a>{{ end }}
+      </div>
+      {{ if and .Site.Params.chipaper.comments (ne .Params.showComments false) }}{{ partial "paper/comments.html" . }}{{ end }}
+    </footer>
+  {{ end }}
+</article>
+{{ end }}

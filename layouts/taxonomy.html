@@ -1,0 +1,3 @@
+{{ define "main" }}
+<section class="listing-page"><header class="page-header"><p class="eyebrow">TOPICS</p><h1>{{ .Title }}<span class="accent">.</span></h1></header><ul class="all-tags">{{ range .Data.Terms.Alphabetical }}<li><a href="{{ .Page.RelPermalink }}">#{{ .Page.LinkTitle }} <span>{{ .Count }}</span></a></li>{{ end }}</ul></section>
+{{ end }}

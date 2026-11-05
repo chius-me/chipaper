@@ -1,0 +1,13 @@
+<ul class="post-list">
+  {{ range . }}
+    <li class="post-item">
+      <article>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        {{ partial "paper/post-meta.html" . }}
+        {{ $paragraph := index (findRE "(?s)<p>.*?</p>" .Content 1 | default (slice .Plain)) 0 }}
+        <p class="post-summary">{{ .Description | default ($paragraph | plainify | htmlUnescape | truncate 105) }}</p>
+        {{ with .GetTerms "tags" }}<ul class="post-tags" aria-label="标签">{{ range . }}<li><a href="{{ .RelPermalink }}"><span aria-hidden="true">#</span>{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}
+      </article>
+    </li>
+  {{ end }}
+</ul>

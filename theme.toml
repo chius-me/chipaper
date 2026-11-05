@@ -1,0 +1,12 @@
+name = "Chipaper"
+license = "MIT"
+description = "A small Chinese-first Hugo theme inspired by AstroPaper and Archie."
+min_version = "0.158.0"
+homepage = "https://github.com/chius-me/chipaper"
+demosite = "https://chius-me.github.io/chipaper/"
+tags = ["blog", "minimal", "responsive", "dark", "light", "search", "chinese"]
+features = ["responsive", "dark mode", "search", "table of contents", "syntax highlighting", "rss"]
+
+[author]
+  name = "Chius"
+  homepage = "https://chius.cc/"

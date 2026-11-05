@@ -1,0 +1,6 @@
+<div class="social-links" aria-label="社交链接">
+  {{ range .Site.Params.social }}
+    <a class="icon-button" href="{{ .url }}" aria-label="{{ .name }}">{{ partial "paper/icon.html" (.icon | default "link") }}</a>
+  {{ end }}
+  {{ if ne .Site.Params.chipaper.showRSS false }}{{ with .Site.Home.OutputFormats.Get "RSS" }}<a class="icon-button" href="{{ .RelPermalink }}" aria-label="订阅 RSS">{{ partial "paper/icon.html" "rss" }}</a>{{ end }}{{ end }}
+</div>

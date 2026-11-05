@@ -1,0 +1,6 @@
+{{- $items := slice -}}
+{{- range where .Site.RegularPages "Section" "posts" -}}
+  {{- $plain := .Content | replaceRE `<a class="heading-anchor"[^>]*>.*?</a>` "" | replaceRE `</(h[1-6]|p|li|pre|blockquote)>` " " | plainify | htmlUnescape -}}
+  {{- $items = $items | append (dict "title" .Title "url" .RelPermalink "content" $plain "tags" (.Params.tags | default slice) "date" (.Date.Format "2006-01-02")) -}}
+{{- end -}}
+{{- $items | jsonify -}}

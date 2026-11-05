@@ -1,0 +1,15 @@
+{{ define "main" }}
+<section class="home-intro" aria-labelledby="intro-title">
+  <h1 id="intro-title">{{ .Site.Params.chipaper.greeting | default .Site.Title }}</h1>
+  {{ with .Site.Params.chipaper.motto | default .Site.Params.author.headline }}<p class="intro-motto">{{ . }}</p>{{ end }}
+  {{ partial "paper/social.html" . }}
+</section>
+<section class="recent-posts" aria-labelledby="recent-title">
+  <div class="section-heading">
+    <h2 id="recent-title"><span class="heading-mark" aria-hidden="true">#</span> 最近的文章</h2>
+    <a class="small-link" href="{{ "posts/" | relURL }}">全部文章 <span aria-hidden="true">↗</span></a>
+  </div>
+  {{ $posts := where .Site.RegularPages "Section" "posts" }}
+  {{ partial "paper/post-list.html" ($posts.ByDate.Reverse | first (.Site.Params.chipaper.recentCount | default 7)) }}
+</section>
+{{ end }}

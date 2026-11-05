@@ -1,0 +1,4 @@
+{{ define "main" }}
+<section class="listing-page"><header class="page-header"><p class="eyebrow">WRITING</p><h1>{{ .Title }}<span class="accent">.</span></h1><p class="muted">共 {{ len .RegularPages }} 篇，慢慢写，慢慢积累。</p></header>
+{{ partial "paper/post-list.html" .RegularPages.ByDate.Reverse }}</section>
+{{ end }}

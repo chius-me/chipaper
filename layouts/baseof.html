@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Locale | default "zh-CN" }}">
+  <head>
+    {{ partial "paper/head.html" . }}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <div class="site-shell">
+      {{ partial "paper/header.html" . }}
+      <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
+      {{ partial "paper/footer.html" . }}
+    </div>
+    {{ $js := resources.Get "js/paper.js" | minify | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+<footer class="site-footer">
+  <p>© {{ now.Year }} {{ .Site.Params.author.name | default .Site.Title }} <span class="footer-divider">/</span> <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/chius-me/chipaper">Chipaper</a></p>
+  {{ partial "paper/social.html" . }}
+</footer>

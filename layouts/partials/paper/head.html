@@ -1,0 +1,43 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
+{{ $description := .Description }}
+{{ if and (not $description) .IsPage }}{{ $description = .Plain | htmlUnescape | truncate 160 }}{{ end }}
+{{ $description = $description | default .Site.Params.description }}
+<meta name="description" content="{{ $description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:title" content="{{ .Title | default .Site.Title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if and .IsPage (eq .Section "posts") }}article{{ else }}website{{ end }}">
+<meta property="og:locale" content="{{ .Site.Language.Locale | replaceRE "-" "_" }}">
+{{ with .Site.Params.defaultSocialImage }}
+  {{ $image := . | absURL }}
+  {{ with resources.Get . }}{{ $image = .Permalink }}{{ end }}
+  <meta property="og:image" content="{{ $image }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ $image }}">
+{{ else }}<meta name="twitter:card" content="summary">{{ end }}
+<meta name="twitter:title" content="{{ .Title | default .Site.Title }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{ if hugo.IsServer }}<meta name="robots" content="noindex, nofollow">{{ end }}
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+{{ if fileExists "static/apple-touch-icon.png" }}<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">{{ end }}
+{{ with .Site.Home.OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .RelPermalink }}">{{ end }}
+<link rel="preload" href="{{ "fonts/google-sans-code.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<script>
+  (() => {
+    let preference;
+    try { preference = localStorage.getItem('chipaper-theme'); } catch (_) {}
+    document.documentElement.dataset.theme = preference === 'light' || preference === 'dark'
+      ? preference : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  })();
+</script>
+{{ $fonts := resources.Get "css/fonts.css" }}
+{{ $style := resources.Get "css/paper.css" }}
+{{ $syntaxLight := resources.Get "css/syntax-light.css" }}
+{{ $syntaxDark := resources.Get "css/syntax-dark.css" }}
+{{ $css := slice $fonts $style $syntaxLight $syntaxDark | resources.Concat "css/chipaper.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ with resources.Get "css/custom.css" }}{{ $custom := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $custom.RelPermalink }}">{{ end }}
