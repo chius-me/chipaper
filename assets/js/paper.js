@@ -58,7 +58,7 @@
         try {
           await navigator.clipboard.writeText(code.textContent);
           copy.textContent = '已复制';
-        } catch (_) { copy.textContent = '请选中复制'; }
+        } catch (_) { copy.textContent = '没复制上'; }
         setTimeout(() => { copy.textContent = '复制'; }, 2000);
       });
       toolbar.append(copy);
@@ -86,8 +86,8 @@
     const current = ++revision;
     const query = input.value.trim().toLocaleLowerCase();
     results.replaceChildren();
-    if (!query) { status.textContent = '输入关键词开始搜索。'; return; }
-    status.textContent = '正在搜索…';
+    if (!query) { status.textContent = '打几个字就开始。'; return; }
+    status.textContent = '正在找…';
     try {
       indexPromise ||= fetch(input.dataset.index).then(response => {
         if (!response.ok) throw new Error('Search index unavailable');
@@ -97,7 +97,7 @@
       if (current !== revision) return;
       const words = query.split(/\s+/);
       const matches = index.filter(post => words.every(word => `${post.title} ${post.tags.join(' ')} ${post.content}`.toLocaleLowerCase().includes(word)));
-      status.textContent = matches.length ? `找到 ${matches.length} 篇文章。` : '还没有找到，试试其他关键词。';
+      status.textContent = matches.length ? `找到 ${matches.length} 篇。` : '没有对上的，换个词试试。';
       matches.forEach(post => {
         const item = document.createElement('li');
         item.className = 'post-item';
@@ -115,6 +115,6 @@
         item.append(heading, meta, summary);
         results.append(item);
       });
-    } catch (_) { if (current === revision) status.textContent = '暂时无法加载搜索，请稍后重试。'; }
+    } catch (_) { if (current === revision) status.textContent = '索引暂时没载出来。'; }
   });
 })();

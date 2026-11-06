@@ -1,27 +1,18 @@
 # Chipaper
 
-一个简洁、独立、重视中英混排的 Hugo 博客主题。灵感来自 [AstroPaper](https://github.com/satnaing/astro-paper) 与 [Archie](https://github.com/athul/archie)。
+我给自己博客用的 Hugo 主题。单栏，等宽字，中文和英文写在一起。样子参考了 [AstroPaper](https://github.com/satnaing/astro-paper) 和 [Archie](https://github.com/athul/archie)。
 
-[在线 Demo](https://chius-me.github.io/chipaper/) · [实际站点](https://chius.cc/) · [English](https://github.com/chius-me/chipaper/blob/main/README.en.md)
+[在线 Demo](https://chius-me.github.io/chipaper/) · [我的博客](https://chius.cc/) · [English](https://github.com/chius-me/chipaper/blob/main/README.en.md)
 
 ![Chipaper 首页](https://raw.githubusercontent.com/chius-me/chipaper/main/images/screenshot.jpg)
 
-## 特点
+正文用 **Google Sans Code** 和 **更纱等宽黑体（Sarasa Mono SC）**。字体文件放在主题里，按 Unicode 分段加载。浅色和深色跟着系统走，手动切换过会记住。
 
-- 单栏、留白、文字列表，适合个人博客与技术笔记。
-- **Google Sans Code + 更纱等宽黑体（Sarasa Mono SC）**，针对中文字号、行距、标点与窄屏换行适配。
-- 字体随主题本地托管，按 Unicode 字符分片加载，不依赖 Google Fonts 或第三方字体 CDN。
-- 浅色与深色模式，默认跟随系统，支持保存读者的手动选择。
-- 折叠目录、标题锚点、代码高亮与复制、可横向滚动的表格和代码。
-- 文章列表、归档、标签、全文搜索、RSS、sitemap、404。
-- 可配置的首页介绍、社交链接与 Giscus 评论。
-- Hugo 模板、CSS 与少量原生 JavaScript；**日常构建不需要 Node.js、npm 或 Python**。
+文章列表、归档、标签、搜索、可折叠目录、标题锚点、代码高亮和复制、RSS、sitemap 都有。界面文字是中文。搜索按字符串匹配：空格隔开的几个词要同时出现，中文可以直接搜。
 
-界面文字目前以中文为主，文章可使用中文、英文或混合内容。搜索采用字符串匹配，支持中文，不提供模糊检索与词义排序。
+Hugo **0.158.0** 以上就能构建。这个仓库的 Demo 用 Extended **0.161.1**。
 
-## 快速体验
-
-需要 Hugo **0.158.0+**；Demo 和实际站点使用 Hugo Extended **0.161.1**。
+## 本地看一眼
 
 ```sh
 git clone https://github.com/chius-me/chipaper.git
@@ -29,17 +20,17 @@ cd chipaper
 hugo server --source exampleSite --baseURL http://localhost:1315/ --port 1315
 ```
 
-打开 <http://localhost:1315/>。示例文章均在 `exampleSite/content/`。
+打开 <http://localhost:1315/>。示例文章在 `exampleSite/content/`。
 
-## 安装到自己的博客
+## 装到自己的博客
 
-在已经初始化 Git 的 Hugo 项目根目录执行：
+博客已经是 Git 仓库的话，在根目录执行：
 
 ```sh
 git submodule add https://github.com/chius-me/chipaper.git themes/chipaper
 ```
 
-然后配置 `hugo.toml`。下面是可直接起步的示例：
+`hugo.toml` 可以先写成这样：
 
 ```toml
 baseURL = "https://example.com/"
@@ -66,11 +57,11 @@ enableRobotsTXT = true
   description = "我的个人博客"
 
 [params.author]
-  name = "Your Name"
+  name = "阿某"
 
 [params.chipaper]
-  greeting = "Hello, I'm Your Name"
-  motto = "Write about the things you care about."
+  greeting = "你好，我是阿某"
+  motto = "平时写的东西放这儿。"
   recentCount = 7
   comments = false
   showRSS = true
@@ -98,9 +89,9 @@ enableRobotsTXT = true
   weight = 40
 ```
 
-完整配置见 [`exampleSite/hugo.toml`](https://github.com/chius-me/chipaper/blob/main/exampleSite/hugo.toml)。其中 `themesDir = "../.."` 仅用于这个仓库内的 Demo，普通博客不要复制该项。
+完整例子在 [`exampleSite/hugo.toml`](https://github.com/chius-me/chipaper/blob/main/exampleSite/hugo.toml)。里面的 `themesDir = "../.."` 只为了在本仓库里跑 Demo，自己的博客删掉这一行。
 
-准备这些页面：
+这几个页面从 [`exampleSite/content/`](https://github.com/chius-me/chipaper/tree/main/exampleSite/content/) 抄一份再改：
 
 | 路径 | front matter |
 | --- | --- |
@@ -110,52 +101,50 @@ enableRobotsTXT = true
 | `content/search.md` | `title: 搜索`，`layout: search` |
 | `content/about.md` | `title: 关于` |
 
-可直接参考或复制 [`exampleSite/content/`](https://github.com/chius-me/chipaper/tree/main/exampleSite/content/)。搜索页即使不在菜单中，也会从导航的放大镜入口访问；需要首页的 JSON 输出才能工作。
+搜索可以不放进菜单，导航上的放大镜会链到它。首页输出里要有 JSON，不然没有索引。
 
-把自己的 `favicon.svg` 与可选的 `apple-touch-icon.png` 放入站点的 `static/`。Demo 提供了 SVG favicon。
+图标放在站点的 `static/`：`favicon.svg`，需要的话再加 `apple-touch-icon.png`。Demo 里带了一份 SVG。
 
 ## 写文章
 
-文章默认放在 `content/posts/`：
+默认放在 `content/posts/`：
 
 ```yaml
 ---
 title: "今天又折腾了点什么"
 date: 2026-11-05T12:00:00+08:00
-description: "可选：首页摘要与搜索引擎描述。"
+description: "首页和搜索结果里的那行摘要。"
 tags: ["日常", "开发"]
 draft: false
 ---
 ```
 
-首页优先使用 `description`，否则提取正文第一个段落。正文中的二、三级标题会自动生成折叠目录。文章的 URL、日期和草稿行为沿用 Hugo 规则，不强制更改你的永久链接。
+没写 `description` 时，首页用正文第一段。`##` 和 `###` 会收进目录，可以折叠。地址、日期和草稿沿用你原来的 Hugo 设置。
 
-单篇文章设置 `showComments: false` 可以关闭评论。代码高亮需要 `markup.highlight.noClasses = false`，这样明暗模式才能使用各自的配色。
+单篇不想要评论，写 `showComments: false`。代码高亮要配 `markup.highlight.noClasses = false`，浅色和深色才能各用各的配色。
 
 ```sh
 hugo server --disableFastRender
 hugo --minify
 ```
 
-## 配置说明
+## 配置
 
-| 配置 | 默认 / 用途 |
+| 配置 | 说明 |
 | --- | --- |
-| `params.author.name` | 页脚作者；未设置时使用站点标题 |
-| `params.chipaper.greeting` | 首页标题；未设置时使用站点标题 |
-| `params.chipaper.motto` | 首页座右铭；兼容 `params.author.headline` |
-| `params.chipaper.recentCount` | 首页文章数，默认 7 |
-| `params.chipaper.showRSS` | 显示 RSS 图标，默认 `true` |
-| `params.chipaper.showTags` | 显示文章标签并将标签纳入搜索，默认 `true` |
-| `params.chipaper.comments` | 启用 Giscus，默认关闭 |
-| `params.defaultSocialImage` | 可选分享图片；支持 `assets/` 内资源或静态 / 绝对 URL |
-| `params.social` | 社交链接数组：`name`、`icon`、`url` |
+| `params.author.name` | 页脚上的名字。不填就用站点标题 |
+| `params.chipaper.greeting` | 首页大标题。不填就用站点标题 |
+| `params.chipaper.motto` | 标题下面那句。旧的 `params.author.headline` 也认 |
+| `params.chipaper.recentCount` | 首页放几篇，默认 7 |
+| `params.chipaper.showRSS` | RSS 图标，默认显示 |
+| `params.chipaper.showTags` | 文章上的标签，以及搜索里带不带标签。默认带 |
+| `params.chipaper.comments` | Giscus，默认关 |
+| `params.defaultSocialImage` | 分享图。可以是 `assets/` 里的文件，也可以是站内路径或完整网址 |
+| `params.social` | 社交链接，每项有 `name`、`icon`、`url` |
 
-主题使用 Hugo 的 `mainSections` 识别文章栏目，未指定时由 Hugo 选择文章最多的栏目。可在站点配置根部设置 `mainSections = ["posts"]`，也支持 `post`、`notes` 等不同目录。
+文章栏目看 Hugo 的 `mainSections`。你不写的话，Hugo 选文章最多的那个栏目。要指定就在配置最外层写 `mainSections = ["posts"]`。目录叫 `post` 或 `notes` 也行。
 
-### 不使用标签或归档
-
-标签和归档均为可选能力。要完全关闭站点的标签系统，在站点配置中设置：
+### 关掉标签和归档
 
 ```toml
 disableKinds = ["taxonomy", "term"]
@@ -164,15 +153,15 @@ disableKinds = ["taxonomy", "term"]
   showTags = false
 ```
 
-随后移除标签与归档菜单，以及站点的 `content/tags/_index.md`、`content/archives.md`。搜索的无 JavaScript 回退指向文章列表，不依赖归档页。主题自身及 Demo 继续保留标签、归档能力。
+再从菜单里去掉「标签」和「归档」，删掉 `content/tags/_index.md` 和 `content/archives.md`。浏览器没开 JavaScript 时，搜索页会把人带到文章列表。
 
-社交图标支持 `github`、`mail`、`rss`，其他名字显示通用链接图标。图标链接的 `name` 同时用于无障碍标签。
+社交图标画了 `github`、`mail`、`rss`。别的名字用一个普通的链接图标。`name` 会读给屏幕阅读器。
 
-导航使用 Hugo `menus.main`。建议内部链接使用 `pageRef`，使 GitHub Pages 子路径也能正确生成链接。外链可配置 `params.target = "_blank"`。
+导航读 `menus.main`。站内页面用 `pageRef`，GitHub Pages 那种 `/仓库名/` 子路径也能生成对的链接。外链可以加 `params.target = "_blank"`。
 
 ### Giscus
 
-先按 [giscus.app](https://giscus.app/zh-CN) 的说明启用 GitHub Discussions，并填写你自己仓库的配置：
+先按 [giscus.app](https://giscus.app/zh-CN) 的说明打开 GitHub Discussions，再填你自己仓库的 ID：
 
 ```toml
 [params.chipaper]
@@ -187,40 +176,40 @@ disableKinds = ["taxonomy", "term"]
   lang = "zh-CN"
 ```
 
-主题会同步明暗模式。已有博客迁移时，保留原仓库、分类、映射方式及文章路径，才能继续关联原来的讨论。
+切换明暗时，评论区会跟着变。从旧博客搬过来，仓库、分类、映射方式和文章路径保持原样，原来的讨论才会还挂在对应的文章下面。
 
-### 定制样式
+### 改样式
 
-在站点中创建 `assets/css/custom.css` 即可追加样式，无需修改主题源码。例如：
+在站点里新建 `assets/css/custom.css`，写你自己的样式：
 
 ```css
 :root { --accent: #256786; }
 html[data-theme="dark"] { --accent: #eab38b; }
 ```
 
-如需改模板，可以使用 Hugo 的站点模板覆盖。主题 partial 统一放在 `partials/paper/`，避免与其他主题的旧覆盖文件冲突。
+要改页面结构，用 Hugo 的模板覆盖：在站点里放同路径的文件。主题的 partial 都在 `partials/paper/`，和以前用过的主题留下的文件岔开。
 
 ## 字体
 
-拉丁字母、数字与代码使用 Google Sans Code；中文与全角标点使用 Sarasa Mono SC。两种字体保留各自字宽，不强制实现「两个英文字符等于一个汉字」的字符网格。斜体在当前版本使用浏览器合成倾斜。
+英文、数字和代码是 Google Sans Code，中文和全角标点是 Sarasa Mono SC。两种字保持各自原来的宽度。这一版的斜体是浏览器合成的，没有单独的斜体字文件。
 
-随仓库附带的完整 WOFF2 分片约 12 MiB；常用字两个字重合计约 1 MiB，其余字符按需加载。常用字包含 GB2312 一级字与制作初版时的内容，完整分片覆盖所选上游字体的其他 CJK 字符。写新文章不需要重新生成字库，缺字时由系统字体继续回退。
+随仓库附带的 WOFF2 一共大约 12 MiB。常用字的常规和粗体两份大约 1 MiB，页面先加载这一部分，其余字符用到再取。常用字包括 GB2312 一级字，以及做初版时文章里出现过的字。上游字体里其余的 CJK 字按区段切开。没切进来的字回退到系统字体，写新文章时直接用这套字库。
 
-只有需要重新转换字体时才使用 Python / uv：
+想自己重新切一套字的时候再跑：
 
 ```sh
 uv run scripts/build-fonts.py
 ```
 
-脚本使用隔离环境，不安装系统字体；Sarasa 版本固定在脚本内。字体源文件下载到临时缓存，生成的字体和 CSS 随主题提交。字体许可证保存在 [`licenses/`](https://github.com/chius-me/chipaper/tree/main/licenses/)。
+脚本用 uv 跑，依赖留在临时环境里，也不会往系统里装字体。Sarasa 的版本写在脚本里。源文件下到临时目录，生成的字体和 CSS 提交在主题里。许可证在 [`licenses/`](https://github.com/chius-me/chipaper/tree/main/licenses/)。
 
-## GitHub Pages Demo
+## 这个仓库的演示站
 
-[`pages.yml`](https://github.com/chius-me/chipaper/blob/main/.github/workflows/pages.yml) 在 `main` 推送时构建 `exampleSite/` 并发布 GitHub Pages，PR 只构建、不部署。Hugo 版本固定为 0.161.1。
+[`pages.yml`](https://github.com/chius-me/chipaper/blob/main/.github/workflows/pages.yml) 会在 `main` 上构建 `exampleSite/` 并发布到 GitHub Pages。PR 只构建。工作流里的 Hugo 固定为 0.161.1。
 
-Fork 仓库后，在 **Settings → Pages → Source** 选择 **GitHub Actions**，再运行工作流。工作流从 Pages 读取实际站点 URL，支持 `/<repository>/` 项目子路径。普通 Hugo 构建不需要执行字体生成脚本。
+Fork 之后，到 **Settings → Pages → Source** 选 **GitHub Actions**，再跑一遍工作流。站点地址从 Pages 读取，`/仓库名/` 这种子路径也能用。
 
-## 更新主题
+## 更新
 
 ```sh
 git submodule update --remote themes/chipaper
@@ -228,14 +217,12 @@ git add themes/chipaper
 git commit -m "Update Chipaper"
 ```
 
-先本地预览，再提交博客中的新 submodule 指针。这样博客可以固定在自己验证过的主题版本。
+先在本地看过，再把新的 submodule 指针提交进博客。站点会停在你确认过的那一版。
 
-## 许可证与致谢
+## 许可
 
-本主题的 Hugo 模板和浏览器交互独立实现，参考 AstroPaper 与 Archie 的简洁视觉。主要特点是中文与英文混排的字体适配、自托管的 Unicode 字库分片，以及无需 Node 构建流程的实现。
+代码是 [MIT](https://github.com/chius-me/chipaper/blob/main/LICENSE)。字体沿用各自的 SIL Open Font License 1.1。
 
-主题目录收录材料与流程见 [Hugo Themes 收录准备](https://github.com/chius-me/chipaper/blob/main/docs/HUGO_THEMES_SUBMISSION.md)。
+模板和页面脚本是按 Hugo 写的。AstroPaper 和 Archie 是样子上的参考。参考了哪些文件、许可证全文，见 [`THIRD_PARTY_NOTICES.md`](https://github.com/chius-me/chipaper/blob/main/THIRD_PARTY_NOTICES.md)。
 
-主题代码：[MIT](https://github.com/chius-me/chipaper/blob/main/LICENSE)。字体：各自的 SIL Open Font License 1.1。
-
-感谢 AstroPaper、Archie、Google Sans Code 和 Sarasa Gothic。灵感来源、源码参考与完整第三方许可见 [`THIRD_PARTY_NOTICES.md`](https://github.com/chius-me/chipaper/blob/main/THIRD_PARTY_NOTICES.md)。
+往 Hugo 官方目录送主题的记录在 [Hugo Themes 收录笔记](https://github.com/chius-me/chipaper/blob/main/docs/HUGO_THEMES_SUBMISSION.md)。

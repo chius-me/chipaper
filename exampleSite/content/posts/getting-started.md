@@ -1,21 +1,21 @@
 ---
-title: "开始使用 Chipaper"
+title: "装上这个主题"
 date: 2026-11-03T10:00:00+08:00
-description: "安装主题、复制示例配置，并用你自己的文章启动一个 Hugo 博客。"
+description: "加到一个现成的 Hugo 博客里，改两行配置就能预览。"
 tags: ["Hugo", "教程", "Chipaper"]
 ---
 
-Chipaper 需要 Hugo **0.158.0 或更新版本**；这个演示站使用 Hugo Extended **0.161.1** 构建。普通构建不需要 Node.js、npm 或 Python。
+需要 Hugo **0.158.0** 或更新的版本。这个演示站用 Extended **0.161.1** 编出来。
 
-## 给现有博客安装主题
+## 加到现有博客
 
-在 Hugo 博客的根目录执行：
+在博客根目录：
 
 ```bash
 git submodule add https://github.com/chius-me/chipaper.git themes/chipaper
 ```
 
-然后在 Hugo 配置中启用主题：
+`hugo.toml` 里写上：
 
 ```toml
 theme = "chipaper"
@@ -28,34 +28,34 @@ hasCJKLanguage = true
   noClasses = false
 
 [params.chipaper]
-  greeting = "Hello, I'm Chius"
-  motto = "Write about the things you care about."
+  greeting = "你好，我是阿某"
+  motto = "平时写的东西放这儿。"
 ```
 
-完整示例在仓库的 `exampleSite/hugo.toml`，包含导航、标签、归档和社交链接。
+仓库里的 `exampleSite/hugo.toml` 是一份全的，导航、标签、归档和社交链接都在。
 
-## 创建文章
+## 写一篇
 
 ```bash
 hugo new content posts/my-first-post.md
 ```
 
-文章支持 Hugo 标准的 Markdown 和 front matter。要显示目录，正文中使用 `##`、`###` 等标题即可。首页优先显示文章的 `description`，没有设置时使用正文的第一个段落。
+Markdown 和 front matter 跟 Hugo 一样。正文里有 `##`、`###`，目录就会出现。首页摘要先用 `description`，没写就取第一段。
 
-## 本地预览
+## 本地看
 
 ```bash
 hugo server --disableFastRender
 ```
 
-发布之前再运行一次 `hugo --minify`，检查生成结果。
+要发布的时候再跑一次 `hugo --minify`。
 
-## 更新主题
+## 以后更新
 
 ```bash
 git submodule update --remote themes/chipaper
 ```
 
-更新后检查本地预览，再把新的 submodule 提交记录提交到博客仓库。
+本地看过，再把新的 submodule 指针提交进博客仓库。
 
-[查看完整文档与配置说明 →](https://github.com/chius-me/chipaper)
+[配置的细节在仓库文档里 →](https://github.com/chius-me/chipaper)

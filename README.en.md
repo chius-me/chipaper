@@ -1,24 +1,18 @@
 # Chipaper
 
-A small, independent, Chinese-first Hugo blog theme inspired by
-[AstroPaper](https://github.com/satnaing/astro-paper) and
-[Archie](https://github.com/athul/archie).
+The Hugo theme I use for my own blog. One column, monospace type, Chinese and English in the same post. The look comes from [AstroPaper](https://github.com/satnaing/astro-paper) and [Archie](https://github.com/athul/archie).
 
 [Live demo](https://chius-me.github.io/chipaper/) · [Chius's blog](https://chius.cc/) · [中文文档](https://github.com/chius-me/chipaper/blob/main/README.md)
 
 ![Chipaper home page](https://raw.githubusercontent.com/chius-me/chipaper/main/images/screenshot.jpg)
 
-Chipaper pairs **Google Sans Code** with **Sarasa Mono SC** for Latin text,
-Chinese, and code. Fonts are self-hosted and split by Unicode range. It offers
-light/dark modes, article lists, archives, tags, substring full-text search,
-collapsible TOC, heading anchors, code copying, RSS, sitemap, and optional
-Giscus comments. The UI labels currently use Chinese; mixed-language articles
-are supported. Search is literal substring matching, without fuzzy ranking.
+Body text uses **Google Sans Code** for Latin and **Sarasa Mono SC** for Chinese. The files ship with the theme and load by Unicode range. Light and dark follow the system, and a manual choice is remembered.
 
-## Try the demo locally
+The usual pieces are here: a post list, archives, tags, search, a folding table of contents, heading links, code highlighting with a copy button, RSS, and a sitemap. The interface is in Chinese. Search matches the text you type. Separate words with spaces and a post has to contain each of them. Chinese is matched the same way.
 
-Hugo **0.158.0+** is required. The demo is built with Extended **0.161.1**.
-Ordinary builds require no Node.js, npm, or Python.
+## Run the demo
+
+Hugo **0.158.0** or newer. The demo is built with Extended **0.161.1**.
 
 ```sh
 git clone https://github.com/chius-me/chipaper.git
@@ -28,29 +22,23 @@ hugo server --source exampleSite --baseURL http://localhost:1315/ --port 1315
 
 ## Install
 
-From an existing Git-initialized Hugo site:
+From a Hugo site that is already a Git repo:
 
 ```sh
 git submodule add https://github.com/chius-me/chipaper.git themes/chipaper
 ```
 
-Set `theme = "chipaper"`, enable `hasCJKLanguage`, include `JSON` in home
-outputs, and set `markup.highlight.noClasses = false`. See the complete
-[example config](https://github.com/chius-me/chipaper/blob/main/exampleSite/hugo.toml). Its `themesDir = "../.."` is only
-for running the repository demo; omit that option in an ordinary blog.
+Set `theme = "chipaper"`, turn on `hasCJKLanguage`, add `JSON` to the home outputs, and set `markup.highlight.noClasses = false`. The full file is [`exampleSite/hugo.toml`](https://github.com/chius-me/chipaper/blob/main/exampleSite/hugo.toml). Delete `themesDir = "../.."` in your own site. That line only lets this repository preview itself.
 
-Posts live in `content/posts/`. Copy the archive, search, about, posts index,
-and tags index pages from [`exampleSite/content`](https://github.com/chius-me/chipaper/tree/main/exampleSite/content/).
-Article front matter supports standard Hugo fields and `description` for the
-home excerpt. Per-post `showComments: false` disables comments.
+Posts go in `content/posts/`. Copy the archive, search, about, posts index, and tags index from [`exampleSite/content`](https://github.com/chius-me/chipaper/tree/main/exampleSite/content/). `description` in front matter is the excerpt on the home page. `showComments: false` turns comments off for one post.
 
 ```toml
 [params.author]
   name = "Your Name"
 
 [params.chipaper]
-  greeting = "Hello, I'm Your Name"
-  motto = "Write about the things you care about."
+  greeting = "你好，我是阿某"
+  motto = "平时写的东西放这儿。"
   recentCount = 7
   showRSS = true
   showTags = true
@@ -62,62 +50,47 @@ home excerpt. Per-post `showComments: false` disables comments.
   url = "https://github.com/your-name"
 ```
 
-Social icons support `github`, `mail`, and `rss`; other names use a generic
-link icon. Internal navigation should use Hugo `pageRef`, which also works
-under GitHub Pages project subpaths. Add site-specific styles to
-`assets/css/custom.css` or override Hugo templates from your site.
+Icons exist for `github`, `mail`, and `rss`. Any other name gets a plain link icon. In `menus.main`, point internal pages at Hugo `pageRef` so links still resolve under a GitHub Pages subpath such as `/repository/`. Extra CSS can live in `assets/css/custom.css`. To change a template, override it from your site. Theme partials are under `partials/paper/`.
 
-For Giscus, enable `params.chipaper.comments` and fill `repo`, `repoid`,
-`category`, `categoryid`, `mapping`, and `lang` under
-`params.chipaper.giscus`. Keep article paths and Giscus mapping unchanged
-when migrating an existing blog.
+For Giscus, set `params.chipaper.comments = true` and fill in `repo`, `repoid`, `category`, `categoryid`, `mapping`, and `lang` under `params.chipaper.giscus`. When moving an existing blog, keep the repo, category, mapping, and post paths, so the old threads stay on the same posts.
+
+### Tags and archives
+
+Both are optional. To turn the taxonomy off:
+
+```toml
+disableKinds = ["taxonomy", "term"]
+
+[params.chipaper]
+  showTags = false
+```
+
+Then remove the tag and archive menu entries, plus `content/tags/_index.md` and `content/archives.md`. With JavaScript off, search sends people to the post list. The theme and the demo leave both features on.
+
+Hugo `mainSections` decides which section counts as posts. Leave it unset and Hugo picks the section with the most pages. `mainSections = ["posts"]` pins it. `post` or `notes` works too.
 
 ## Fonts
 
-Latin text uses Google Sans Code; CJK glyphs use Sarasa Mono SC. Their native
-advances are preserved, rather than enforcing an exact 2:1 character grid.
-Italic text uses a synthetic browser slant in this version. All WOFF2 slices
-total about 12 MiB; the two common CJK subsets total about 1 MiB. Remaining
-glyphs load on demand and system fonts provide fallback.
+Latin, digits, and code are Google Sans Code. Chinese and fullwidth punctuation are Sarasa Mono SC. Each font keeps its own widths. Italics in this version are a browser slant.
 
-Regeneration is optional and isolated with uv:
+The WOFF2 slices add up to about 12 MiB. The two common subsets, regular and bold, are about 1 MiB and load first. Other characters load when a page needs them. The common set covers GB2312 level 1 and characters that showed up while the first version was being written. The remaining slices cover the other CJK glyphs from the upstream font. A glyph that was not cut falls back to the system font. New posts use the fonts as shipped.
+
+Rebuild them only when you want to cut a new set:
 
 ```sh
 uv run scripts/build-fonts.py
 ```
 
-The script pins the Sarasa version and does not install system fonts. Normal
-Hugo builds consume the committed font files directly.
+The script runs under uv, pins the Sarasa release, and does not install fonts on the machine. A normal `hugo` build uses the files already in the repo.
 
-## Demo deployment and updates
+## Demo and updates
 
-The [Pages workflow](https://github.com/chius-me/chipaper/blob/main/.github/workflows/pages.yml) builds the example site on
-push/PR and deploys `main` pushes to GitHub Pages. Enable **GitHub Actions**
-as the Pages source in a fork's repository settings. The workflow gets the
-actual base URL from Pages and supports project subpaths.
+The [Pages workflow](https://github.com/chius-me/chipaper/blob/main/.github/workflows/pages.yml) builds the example site on pushes and pull requests, and deploys `main` to GitHub Pages. Hugo there is pinned to 0.161.1. After a fork, set **Settings → Pages → Source** to **GitHub Actions**. The workflow reads the site URL from Pages, including a `/repository/` subpath.
 
-Update an installed theme with `git submodule update --remote themes/chipaper`,
-preview locally, then commit the new submodule pointer in your blog.
+Update an installed copy with `git submodule update --remote themes/chipaper`, look at it locally, then commit the new submodule pointer in your blog.
 
-## Credits and license
+## License
 
-Chipaper implements its own Hugo templates and browser interactions while
-drawing visual inspiration from AstroPaper and Archie. Its focus is mixed
-Chinese/Latin typography, self-hosted Unicode font slices, and a Hugo build
-without a Node pipeline.
+Theme code is [MIT](https://github.com/chius-me/chipaper/blob/main/LICENSE). The fonts keep their SIL Open Font Licenses.
 
-Theme code is [MIT](https://github.com/chius-me/chipaper/blob/main/LICENSE); fonts retain their SIL Open Font Licenses.
-See [third-party notices](https://github.com/chius-me/chipaper/blob/main/THIRD_PARTY_NOTICES.md) for upstream projects,
-source references, and complete license files.
-
-## Optional tags and archives
-
-Set `params.chipaper.showTags = false` to hide article tags and exclude tags
-from the search index. Set root-level `disableKinds = ["taxonomy", "term"]`
-to stop generating taxonomy pages, then remove the archive/tag menu entries
-and corresponding content pages. The theme and demo retain both features.
-Search falls back to the article list when JavaScript is disabled.
-
-The theme uses Hugo `mainSections` and supports sections named `post`,
-`posts`, or other names. Set root-level `mainSections` to override automatic
-section detection.
+Templates and scripts are written for Hugo. AstroPaper and Archie are visual references. Upstream projects, the files this theme looked at, and the full license texts are in [THIRD_PARTY_NOTICES.md](https://github.com/chius-me/chipaper/blob/main/THIRD_PARTY_NOTICES.md).

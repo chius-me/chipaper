@@ -2,11 +2,11 @@
 # requires-python = ">=3.11"
 # dependencies = ["fonttools[woff]>=4.60,<5", "py7zr>=1,<2"]
 # ///
-"""Build self-hosted fonts. Run with: uv run scripts/build-fonts.py
+"""Cut the theme's webfonts. Run with: uv run scripts/build-fonts.py
 
-The common CJK subset includes GB2312 level-1 characters, punctuation, and
-existing content. Remaining glyphs are shipped in Unicode-range slices, so new
-posts do not require rebuilding fonts. No system font installation is involved.
+The common CJK subset is GB2312 level-1, punctuation, and characters already
+used in the content. Other glyphs ship as Unicode-range slices, so a new post
+can use the fonts as they are. The script does not install fonts on the system.
 """
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path

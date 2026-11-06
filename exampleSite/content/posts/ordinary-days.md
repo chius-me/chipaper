@@ -1,20 +1,20 @@
 ---
 title: "An ordinary afternoon"
 date: 2026-11-02T10:00:00+08:00
-description: "A short English post, some afternoon light, and a little room to think."
+description: "A short note in English, so the Latin font has a page of its own."
 tags: ["English", "日常"]
 ---
 
-The desk is quiet. A terminal waits on the left side of the screen, a half-finished paragraph on the right. There is nothing especially remarkable about the afternoon, and that is part of its charm.
+I sat down to write out a Hugo flag I keep forgetting. Twenty minutes later I was still reading an old note about how much power the small server draws.
 
-## A place to keep things
+## What gets written down
 
-A blog can be a small collection of things worth remembering: an explanation that finally made sense, a problem solved after several attempts, or a thought that would otherwise disappear by tomorrow.
+Mostly things I would otherwise look up twice. A command that almost worked, the name of a package I removed and needed again the next week, a sentence that took too long to get right.
 
-It does not have to be polished every time. Sometimes a few paragraphs and a useful code snippet are enough.
+A few paragraphs is a finished post. It can stop there.
 
-## Leave some room
+## On a phone
 
-Good typography gives the words a little room. The space between paragraphs matters as much as the shape of the letters. On a small screen, the same page should remain comfortable to read.
+I checked the same page on my phone later. The lines wrap. A long URL scrolls inside its own box, and the rest of the page stays put.
 
-今天也许没有发生什么特别的事，但把它记下来，就多了一段可以回头看的日常。
+今天没什么特别的。记下来，以后翻到这里，至少知道这个下午我在。

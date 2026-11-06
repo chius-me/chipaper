@@ -1,7 +1,7 @@
 name = "Chipaper"
 license = "MIT"
 licenselink = "https://github.com/chius-me/chipaper/blob/main/LICENSE"
-description = "A small Chinese-first Hugo theme inspired by AstroPaper and Archie."
+description = "One-column monospace Hugo theme for blogs in Chinese and English."
 min_version = "0.158.0"
 homepage = "https://github.com/chius-me/chipaper"
 demosite = "https://chius-me.github.io/chipaper/"

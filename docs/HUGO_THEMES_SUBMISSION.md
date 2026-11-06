@@ -1,63 +1,64 @@
-# Hugo Themes 收录进度
+# Hugo Themes 收录笔记
 
-核对日期：2026-11-05。状态：已提交 [Add Chipaper #830](https://github.com/gohugoio/hugoThemesSiteBuilder/pull/830)，Netlify deploy preview 已通过，等待维护者审核合并。
+2026-11-05。PR 已开：[Add Chipaper #830](https://github.com/gohugoio/hugoThemesSiteBuilder/pull/830)。Netlify 预览通过了，还在等维护者合并。预览能打开，只说明这次构建没报错。
 
-- [Chipaper 目录预览](https://deploy-preview-830--hugothemes.netlify.app/themes/chipaper/)
+- [目录里的预览页](https://deploy-preview-830--hugothemes.netlify.app/themes/chipaper/)
 - [Netlify 构建日志](https://app.netlify.com/projects/hugothemes/deploys/6aec6d41a13d6d5b7a6fa550)
 
-本次 `deploy/netlify`、Header rules 和 Redirect rules 均成功，Pages changed 以 neutral 完成；目录预览中的截图、主题元数据、源码和 Demo 链接已核对。提交 PR 和预览成功不代表已经收录。
+这次 `deploy/netlify`、Header rules、Redirect rules 都成功了，Pages changed 是 neutral。预览页上的截图、主题元数据、仓库地址和 Demo 链接对过。
 
-当前入口是 [gohugoio/hugoThemesSiteBuilder](https://github.com/gohugoio/hugoThemesSiteBuilder)，不是已经归档的 `gohugoio/hugoThemes`。以[官方 Adding a theme 与验收规则](https://github.com/gohugoio/hugoThemesSiteBuilder#adding-a-theme)为准。
+提交入口是 [gohugoio/hugoThemesSiteBuilder](https://github.com/gohugoio/hugoThemesSiteBuilder)。旧的 `gohugoio/hugoThemes` 已经归档。规则以[官方 Adding a theme](https://github.com/gohugoio/hugoThemesSiteBuilder#adding-a-theme) 为准。
 
-## 已准备
+## 已经备好的
 
-- 公开源码仓库、MIT 许可证、字体与上游参考的完整许可。
-- 根目录 `theme.toml`：名称、描述、许可证链接、源码、Demo、作者和标签。
+- 公开仓库、MIT，以及字体和上游参考的许可证全文。
+- 根目录 `theme.toml`：名字、简介、许可证链接、仓库、Demo、作者、标签。
 - 根目录 `hugo.toml`：`module.hugoVersion.min = "0.158.0"`。
-- `images/screenshot.jpg`：1500 × 1000，3:2，无浏览器边框。
-- `images/tn.jpg`：900 × 600，3:2，无浏览器边框。
-- 中文 README 与英文翻译，图片使用绝对 URL，文档链接可在目录站点访问。
-- 可访问的 GitHub Pages Demo 和完整的 `exampleSite/`。
-- Hugo 0.161.1 与目录构建配置使用的 Hugo 0.167.0 已完成构建验证。
-- `mainSections` 支持不同文章目录名；标签显示与搜索索引可单独关闭，Demo 默认保留标签和归档。
+- `images/screenshot.jpg`：1500 × 1000，3:2，没有浏览器边框。
+- `images/tn.jpg`：900 × 600，3:2，没有浏览器边框。
+- 中文 README 和英文 README。图片用绝对地址，链接在目录站上也能打开。
+- 能访问的 GitHub Pages Demo，以及完整的 `exampleSite/`。
+- 用 Hugo 0.161.1，和目录构建用的 Hugo 0.167.0，都构建过。
+- `mainSections` 可以换成别的文章目录名。标签显示和搜索索引可以单独关掉。Demo 里标签和归档是开着的。
 
-## 主题特点与参考来源
+## 给维护者看的几句
 
-Chipaper 参考 AstroPaper 和 Archie 的简洁视觉。Hugo 页面模板与浏览器交互独立实现，具体参考与许可见 `THIRD_PARTY_NOTICES.md`。
+样子参考 AstroPaper 和 Archie。Hugo 模板和页面上的脚本是单独写的，出处和许可见 `THIRD_PARTY_NOTICES.md`。
 
-主要特点是面向中文与英文混排的等宽字体组合、自托管的 Unicode 字体分片、可选的标签与归档，以及无需 Node 构建流程的 Hugo 实现。收录由维护者审核决定，准备材料和通过构建并不代表已经被接受。
+主题主要解决中文和英文混排：等宽字体、自带的 Unicode 字体分片，标签和归档可以关掉。构建就是 Hugo，没有 Node 这一步。
 
-## 提交流程
+## 当时的提交步骤
 
-1. Fork 官方 `hugoThemesSiteBuilder` 仓库。
-2. 在 `themes.txt` 中按字典序加入一行：
+1. Fork 官方 `hugoThemesSiteBuilder`。
+2. 在 `themes.txt` 里按字典序加一行：
 
    ```text
    github.com/chius-me/chipaper
    ```
 
-3. 提交改动，并向官方 `main` 分支创建 PR。
-4. 确认 Netlify deploy preview 成功；若有错误，修复主题源码，再按官方说明刷新预览。
-5. 等维护者审核合并。官方目录在每日 UTC 00:00（北京时间 08:00）定时构建完成后更新。
+3. 向官方 `main` 提 PR。
+4. 看 Netlify 预览。有错就改主题，再按官方说明刷新预览。
+5. 等维护者合并。目录每天 UTC 00:00（北京时间 08:00）构建一次，合并之后要等那一轮。
 
-官方会优先读取最新 release 的材料；没有 release 时读取最新提交。以后发布新素材时，应确保对应 release 包含这些素材，并保留已经发布的 Git 引用与标签。
+官方先读最新 release 里的文件。没有 release 就读最新提交。以后换截图或说明，放进对应的 release。已经推上去的 tag 留着，别改也别删。
 
-## 可用的 PR 描述草稿
+## PR 描述草稿
 
 Title: `Add Chipaper`
 
 ```text
-Add Chipaper, a minimal, Chinese-first Hugo blog theme inspired by AstroPaper and Archie.
+Add Chipaper, a one-column Hugo blog theme for writing in Chinese and English.
+The look comes from AstroPaper and Archie.
 
 Repository: https://github.com/chius-me/chipaper
 Demo: https://chius-me.github.io/chipaper/
-License: MIT (bundled fonts retain their SIL Open Font Licenses)
+License: MIT (bundled fonts keep their SIL Open Font Licenses)
 
-The theme pairs self-hosted Google Sans Code and Sarasa Mono SC, includes
-light/dark modes, search, TOC, code copying, optional tags, and archives.
-It uses Hugo templates, CSS, and vanilla JavaScript without a Node build pipeline.
+Latin is self-hosted Google Sans Code. Chinese is Sarasa Mono SC, split by
+Unicode range. Light and dark mode, search, TOC, code copy, optional tags,
+and archives. Templates, CSS, and a little plain JavaScript. A normal build
+is Hugo alone.
 
-The repository includes theme metadata, a Hugo version declaration, bilingual
-documentation, and 3:2 screenshot/thumbnail assets. Builds were checked with
-Hugo 0.161.1 and 0.167.0.
+theme.toml, a minimum Hugo version, Chinese and English READMEs, and 3:2
+screenshot and thumbnail are in the repo. Built with Hugo 0.161.1 and 0.167.0.
 ```

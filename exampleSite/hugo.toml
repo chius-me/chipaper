@@ -33,20 +33,20 @@ summaryLength = 80
   endLevel = 3
 
 [params]
-  description = "Chipaper：一个重视中英混排、留白与阅读体验的 Hugo 主题。"
+  description = "Chipaper 的演示。单栏，等宽字，中文和英文写在一起。"
 
 [params.author]
   name = "Chipaper"
 
 [params.chipaper]
-  greeting = "Hello, I'm Chipaper"
-  motto = "A quiet place for words, code, and ordinary days."
+  greeting = "你好"
+  motto = "写点中文，也写点英文。"
   recentCount = 7
   comments = false
   showRSS = true
 
 [[params.social]]
-  name = "Chipaper on GitHub"
+  name = "GitHub"
   icon = "github"
   url = "https://github.com/chius-me/chipaper"
 
