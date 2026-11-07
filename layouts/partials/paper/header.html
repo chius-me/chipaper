@@ -11,7 +11,7 @@
     {{ end }}
     <div class="site-nav-tools">
       {{ with .Site.GetPage "/search" }}<a class="icon-button" href="{{ .RelPermalink }}" aria-label="{{ T "search_posts" }}">{{ partial "paper/icon.html" "search" }}</a>{{ end }}
-      <button class="icon-button theme-toggle" type="button" data-theme-light="{{ T "theme_light" }}" data-theme-dark="{{ T "theme_dark" }}" hidden>
+      <button class="icon-button theme-toggle" type="button" aria-label="{{ T "theme_dark" }}" data-theme-light="{{ T "theme_light" }}">
         <span class="moon-icon">{{ partial "paper/icon.html" "moon" }}</span>
         <span class="sun-icon">{{ partial "paper/icon.html" "sun" }}</span>
       </button>

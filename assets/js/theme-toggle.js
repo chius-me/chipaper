@@ -1,6 +1,7 @@
 (() => {
   const root = document.documentElement;
   const toggle = document.currentScript.previousElementSibling;
+  const darkLabel = toggle.getAttribute('aria-label');
   const media = matchMedia('(prefers-color-scheme: dark)');
 
   function sendCommentTheme() {
@@ -10,7 +11,7 @@
 
   function updateTheme(theme) {
     root.dataset.theme = theme;
-    toggle.setAttribute('aria-label', theme === 'dark' ? toggle.dataset.themeLight : toggle.dataset.themeDark);
+    toggle.setAttribute('aria-label', theme === 'dark' ? toggle.dataset.themeLight : darkLabel);
     sendCommentTheme();
   }
 
@@ -20,7 +21,6 @@
     updateTheme(theme);
   });
   updateTheme(root.dataset.theme);
-  toggle.hidden = false;
 
   media.addEventListener('change', event => {
     let saved;

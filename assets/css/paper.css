@@ -51,6 +51,8 @@ button, a, summary, input { -webkit-tap-highlight-color: transparent; }
 .site-nav-tools > :nth-child(1 of :not([hidden])) { border-start-start-radius: 3px; border-end-start-radius: 3px; }
 .site-nav-tools > :last-child { border-start-end-radius: 3px; border-end-end-radius: 3px; }
 .site-nav-tools :is(.icon-button, summary):focus-visible { outline-offset: -3px; }
+html:not([data-theme]) :is(.theme-toggle, .site-nav-tools:not(:has(> :not(.theme-toggle)))) { display: none; }
+html:not([data-theme]) .theme-toggle:first-child + .language-switch { border-inline-start: 0; border-radius: 3px; }
 .language-switch { position: relative; font-size: .8125rem; }
 .language-switch summary { display: flex; align-items: center; justify-content: center; gap: .35rem; min-width: 44px; min-height: 36px; padding-inline: .55rem; border-radius: inherit; cursor: pointer; }
 .language-switch summary::-webkit-details-marker { display: none; }
