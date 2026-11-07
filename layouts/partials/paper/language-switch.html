@@ -1,23 +1,30 @@
 {{ if hugo.IsMultilingual }}
   {{ $page := . }}
-  <nav class="language-switch" aria-label="{{ T "language_switch" }}">
+  {{ $label := or .Language.Label .Language.Name }}
+  <details class="language-switch">
+    <summary aria-label="{{ T "language_switch" }} ({{ $label }})">
+      {{ partial "paper/icon.html" "globe" }}
+      <span class="language-current" lang="{{ or .Language.Locale .Language.Name }}" translate="no">{{ $label }}</span>
+      {{ partial "paper/icon.html" "chevron-down" }}
+    </summary>
     <ul>
       {{ range hugo.Sites }}
         {{ $language := .Language }}
         {{ $label := or $language.Label $language.Name }}
+        {{ $locale := or $language.Locale $language.Name }}
         <li>
           {{ if eq $language.Name $page.Language.Name }}
-            <span lang="{{ $language.Locale }}" translate="no" aria-current="page">{{ $label }}</span>
+            <span aria-current="page"><span lang="{{ $locale }}" translate="no">{{ $label }}</span>{{ partial "paper/icon.html" "check" }}</span>
           {{ else }}
             {{ $target := .Home }}
             {{ $translations := where $page.Translations "Language.Name" $language.Name }}
             {{ with $translations }}{{ $target = index . 0 }}{{ end }}
-            <a href="{{ $target.RelPermalink }}" hreflang="{{ $language.Locale }}">
-              <span lang="{{ $language.Locale }}" translate="no">{{ $label }}</span>{{ if not $translations }} <small>· {{ T "home" }}</small>{{ end }}
+            <a href="{{ $target.RelPermalink }}" hreflang="{{ $locale }}">
+              <span lang="{{ $locale }}" translate="no">{{ $label }}</span>{{ if not $translations }} <small>· {{ T "home" }}</small>{{ end }}
             </a>
           {{ end }}
         </li>
       {{ end }}
     </ul>
-  </nav>
+  </details>
 {{ end }}

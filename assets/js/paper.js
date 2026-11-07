@@ -1,40 +1,20 @@
 (() => {
   const messages = JSON.parse(document.currentScript.dataset.messages);
-  const root = document.documentElement;
-  const toggle = document.querySelector('.theme-toggle');
-  const media = matchMedia('(prefers-color-scheme: dark)');
-  const sendCommentTheme = () => {
-    document.querySelector('iframe.giscus-frame')?.contentWindow?.postMessage({ giscus: { setConfig: { theme: root.dataset.theme === 'dark' ? 'noborder_dark' : 'noborder_light' } } }, 'https://giscus.app');
-  };
-  function updateTheme(theme) {
-    root.dataset.theme = theme;
-    toggle?.setAttribute('aria-label', theme === 'dark' ? messages.themeLight : messages.themeDark);
-    sendCommentTheme();
-  }
-  if (toggle) {
-    toggle.hidden = false;
-    updateTheme(root.dataset.theme);
-    toggle.addEventListener('click', () => {
-      const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-      try { localStorage.setItem('chipaper-theme', theme); } catch (_) {}
-      updateTheme(theme);
+  const languageSwitch = document.querySelector('.language-switch');
+  if (languageSwitch) {
+    document.addEventListener('click', event => {
+      if (languageSwitch.open && !languageSwitch.contains(event.target)) languageSwitch.open = false;
     });
-  }
-  media.addEventListener('change', event => {
-    let saved;
-    try { saved = localStorage.getItem('chipaper-theme'); } catch (_) {}
-    if (!saved) updateTheme(event.matches ? 'dark' : 'light');
-  });
-  const comments = document.querySelector('.comments');
-  if (comments) {
-    const observer = new MutationObserver(() => {
-      const frame = comments.querySelector('iframe.giscus-frame');
-      if (!frame) return;
-      frame.addEventListener('load', sendCommentTheme);
-      sendCommentTheme();
-      observer.disconnect();
+    languageSwitch.addEventListener('focusout', event => {
+      if (event.relatedTarget && !languageSwitch.contains(event.relatedTarget)) languageSwitch.open = false;
     });
-    observer.observe(comments, { childList: true, subtree: true });
+    languageSwitch.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && languageSwitch.open) {
+        event.preventDefault();
+        languageSwitch.open = false;
+        languageSwitch.querySelector('summary').focus();
+      }
+    });
   }
 
   document.querySelectorAll('.prose .highlight').forEach(block => {

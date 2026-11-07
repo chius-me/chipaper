@@ -12,8 +12,6 @@
     </div>
     {{ $js := resources.Get "js/paper.js" | minify | fingerprint }}
     {{ $messages := dict
-      "themeLight" (T "theme_light")
-      "themeDark" (T "theme_dark")
       "codeScroll" (T "code_scroll")
       "copy" (T "copy")
       "copyCode" (T "copy_code")

@@ -1,15 +1,22 @@
-<header class="site-header{{ if hugo.IsMultilingual }} site-header-multilingual{{ end }}">
+<header class="site-header">
   <a class="site-title" href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}<span class="title-dot" aria-hidden="true">.</span></a>
-  {{ partial "paper/language-switch.html" . }}
-  <nav class="site-nav{{ if hugo.IsMultilingual }} site-nav-multilingual{{ end }}" aria-label="{{ T "main_nav" }}">
-    {{ range .Site.Menus.main }}
-      {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
-      <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}{{ if .Params.target }} target="{{ .Params.target }}" rel="noopener noreferrer"{{ end }}>{{ .Name }}{{ if .Params.target }}<span class="external-mark" aria-hidden="true">↗</span>{{ end }}</a>
+  <nav class="site-nav" aria-label="{{ T "main_nav" }}">
+    {{ with .Site.Menus.main }}
+      <div class="site-nav-links">
+        {{ range . }}
+          {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+          <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}{{ if .Params.target }} target="{{ .Params.target }}" rel="noopener noreferrer"{{ end }}>{{ .Name }}{{ if .Params.target }}<span class="external-mark" aria-hidden="true">↗</span>{{ end }}</a>
+        {{ end }}
+      </div>
     {{ end }}
-    {{ with .Site.GetPage "/search" }}<a class="icon-button" href="{{ .RelPermalink }}" aria-label="{{ T "search_posts" }}">{{ partial "paper/icon.html" "search" }}</a>{{ end }}
-    <button class="icon-button theme-toggle" type="button" aria-label="{{ T "theme_dark" }}" hidden>
-      <span class="moon-icon">{{ partial "paper/icon.html" "moon" }}</span>
-      <span class="sun-icon">{{ partial "paper/icon.html" "sun" }}</span>
-    </button>
+    <div class="site-nav-tools">
+      {{ with .Site.GetPage "/search" }}<a class="icon-button" href="{{ .RelPermalink }}" aria-label="{{ T "search_posts" }}">{{ partial "paper/icon.html" "search" }}</a>{{ end }}
+      <button class="icon-button theme-toggle" type="button" data-theme-light="{{ T "theme_light" }}" data-theme-dark="{{ T "theme_dark" }}" hidden>
+        <span class="moon-icon">{{ partial "paper/icon.html" "moon" }}</span>
+        <span class="sun-icon">{{ partial "paper/icon.html" "sun" }}</span>
+      </button>
+      {{ with resources.Get "js/theme-toggle.js" | minify }}<script>{{ .Content | safeJS }}</script>{{ end }}
+      {{ partial "paper/language-switch.html" . }}
+    </div>
   </nav>
 </header>
