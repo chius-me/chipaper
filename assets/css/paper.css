@@ -42,6 +42,12 @@ button, a, summary, input { -webkit-tap-highlight-color: transparent; }
 .site-nav { display: flex; align-items: center; gap: 1.3rem; font-size: .875rem; line-height: 1.5; }
 .site-nav > a:not(.icon-button) { color: var(--text); white-space: nowrap; text-decoration: none; }
 .site-nav > a:hover, .site-nav > a[aria-current="page"] { text-decoration: underline; text-decoration-style: wavy; text-underline-offset: .5em; }
+.language-switch { position: relative; flex: 0 0 auto; }
+.language-switch summary { cursor: pointer; white-space: nowrap; }
+.language-switch ul { position: absolute; z-index: 2; inset-inline-end: 0; min-width: max-content; margin: .5rem 0 0; padding: .3rem; list-style: none; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; }
+.language-switch li > :is(a, span) { display: block; padding: .4rem .65rem; color: var(--text); text-decoration: none; }
+.language-switch li > a:hover { background: var(--soft); color: var(--accent); }
+.language-switch [aria-current], .language-switch small { color: var(--muted); }
 .external-mark { color: var(--muted); font-size: .7rem; margin-left: .15rem; }
 .icon-button { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 36px; flex: 0 0 auto; color: var(--text); border: 0; padding: 0; background: transparent; text-decoration: none; border-radius: 3px; }
 .icon-button:hover { color: var(--accent); background: var(--soft); }
@@ -161,6 +167,7 @@ h1 { font-size: clamp(1.8rem, 3.4vw, 2.3rem); letter-spacing: -.04em; }
   .site-header { flex-wrap: wrap; padding-block: 1.25rem 1rem; gap: .9rem; }
   .site-title { font-size: 1.2rem; }
   .site-nav { width: 100%; gap: 1.1rem; }
+  .site-nav-multilingual { flex-wrap: wrap; }
   .site-nav .icon-button:first-of-type { margin-left: auto; }
 }
 @media (max-width: 480px) {

@@ -1,22 +1,22 @@
 {{ define "main" }}
 <article class="single-post">
   {{ $isArticle := in .Site.MainSections .Section }}
-  <div class="breadcrumbs"><a href="{{ if $isArticle }}{{ partial "paper/post-section-url.html" . }}{{ else }}{{ .Site.Home.RelPermalink }}{{ end }}">{{ if $isArticle }}文章{{ else }}首页{{ end }}</a><span aria-hidden="true">/</span><span>{{ .Title }}</span></div>
+  <div class="breadcrumbs"><a href="{{ if $isArticle }}{{ partial "paper/post-section-url.html" . }}{{ else }}{{ .Site.Home.RelPermalink }}{{ end }}">{{ if $isArticle }}{{ T "posts" }}{{ else }}{{ T "home" }}{{ end }}</a><span aria-hidden="true">/</span><span>{{ .Title }}</span></div>
   <header class="post-header">
     <h1>{{ .Title }}</h1>
     {{ if $isArticle }}{{ partial "paper/post-meta.html" . }}{{ end }}
-    {{ if ne .Site.Params.chipaper.showTags false }}{{ with .GetTerms "tags" }}<ul class="post-tags" aria-label="标签">{{ range . }}<li><a href="{{ .RelPermalink }}"><span aria-hidden="true">#</span>{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}{{ end }}
+    {{ if ne .Site.Params.chipaper.showTags false }}{{ with .GetTerms "tags" }}<ul class="post-tags" aria-label="{{ T "tags" }}">{{ range . }}<li><a href="{{ .RelPermalink }}"><span aria-hidden="true">#</span>{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}{{ end }}
   </header>
   {{ if and $isArticle (gt (len .Fragments.Headings) 0) }}
-    <details class="post-toc"><summary>目录 <span class="toc-hint">Table of contents</span></summary>{{ .TableOfContents }}</details>
+    <details class="post-toc"><summary>{{ T "toc" }}</summary>{{ .TableOfContents }}</details>
   {{ end }}
   <div class="prose">{{ .Content }}</div>
   {{ if $isArticle }}
     <footer class="post-end">
-      <p class="end-mark">写到这里，下次再见<span class="accent" aria-hidden="true">.</span></p>
+      <p class="end-mark">{{ T "post_end" }}<span class="accent" aria-hidden="true">.</span></p>
       <div class="post-navigation">
-        {{ with .PrevInSection }}<a href="{{ .RelPermalink }}"><span>← 更早的文章</span><strong>{{ .Title }}</strong></a>{{ end }}
-        {{ with .NextInSection }}<a class="next-post" href="{{ .RelPermalink }}"><span>更新的文章 →</span><strong>{{ .Title }}</strong></a>{{ end }}
+        {{ with .PrevInSection }}<a href="{{ .RelPermalink }}"><span>← {{ T "older_post" }}</span><strong>{{ .Title }}</strong></a>{{ end }}
+        {{ with .NextInSection }}<a class="next-post" href="{{ .RelPermalink }}"><span>{{ T "newer_post" }} →</span><strong>{{ .Title }}</strong></a>{{ end }}
       </div>
       {{ if and .Site.Params.chipaper.comments (ne .Params.showComments false) }}{{ partial "paper/comments.html" . }}{{ end }}
     </footer>

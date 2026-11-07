@@ -1,5 +1,5 @@
 <div class="post-meta">
   {{ partial "paper/icon.html" "calendar" }}
   <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02" }}</time>
-  <span aria-hidden="true">·</span><span>{{ .ReadingTime }} 分钟阅读</span>
+  <span aria-hidden="true">·</span><span>{{ T "reading_time" (dict "Minutes" .ReadingTime) }}</span>
 </div>

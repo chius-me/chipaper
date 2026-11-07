@@ -1,16 +1,31 @@
 <!doctype html>
-<html lang="{{ .Site.Language.Locale | default "zh-CN" }}">
+<html lang="{{ or .Language.Locale .Language.Name }}">
   <head>
     {{ partial "paper/head.html" . }}
   </head>
   <body>
-    <a class="skip-link" href="#main">跳到正文</a>
+    <a class="skip-link" href="#main">{{ T "skip_link" }}</a>
     <div class="site-shell">
       {{ partial "paper/header.html" . }}
       <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
       {{ partial "paper/footer.html" . }}
     </div>
     {{ $js := resources.Get "js/paper.js" | minify | fingerprint }}
-    <script src="{{ $js.RelPermalink }}" defer></script>
+    {{ $messages := dict
+      "themeLight" (T "theme_light")
+      "themeDark" (T "theme_dark")
+      "codeScroll" (T "code_scroll")
+      "copy" (T "copy")
+      "copyCode" (T "copy_code")
+      "copied" (T "copied")
+      "copyFailed" (T "copy_failed")
+      "tableScroll" (T "table_scroll")
+      "searchIdle" (T "search_idle")
+      "searchPending" (T "search_pending")
+      "searchMatches" (T "search_matches")
+      "searchEmpty" (T "search_empty")
+      "searchError" (T "search_error")
+    }}
+    <script src="{{ $js.RelPermalink }}" data-messages="{{ $messages | jsonify }}" defer></script>
   </body>
 </html>

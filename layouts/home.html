@@ -6,8 +6,8 @@
 </section>
 <section class="recent-posts" aria-labelledby="recent-title">
   <div class="section-heading">
-    <h2 id="recent-title"><span class="heading-mark" aria-hidden="true">#</span> 最近的文章</h2>
-    <a class="small-link" href="{{ partial "paper/post-section-url.html" . }}">全部文章 <span aria-hidden="true">↗</span></a>
+    <h2 id="recent-title"><span class="heading-mark" aria-hidden="true">#</span> {{ T "recent_posts" }}</h2>
+    <a class="small-link" href="{{ partial "paper/post-section-url.html" . }}">{{ T "all_posts" }} <span aria-hidden="true">↗</span></a>
   </div>
   {{ $posts := where .Site.RegularPages "Section" "in" .Site.MainSections }}
   {{ partial "paper/post-list.html" ($posts.ByDate.Reverse | first (.Site.Params.chipaper.recentCount | default 7)) }}

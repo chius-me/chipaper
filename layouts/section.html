@@ -1,4 +1,4 @@
 {{ define "main" }}
-<section class="listing-page"><header class="page-header"><p class="eyebrow">WRITING</p><h1>{{ .Title }}<span class="accent">.</span></h1><p class="muted">一共 {{ len .RegularPages }} 篇。</p></header>
+<section class="listing-page"><header class="page-header"><p class="eyebrow">WRITING</p><h1>{{ .Title }}<span class="accent">.</span></h1><p class="muted">{{ T "post_count" (len .RegularPages) }}</p></header>
 {{ partial "paper/post-list.html" .RegularPages.ByDate.Reverse }}</section>
 {{ end }}
