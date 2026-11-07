@@ -42,12 +42,15 @@ button, a, summary, input { -webkit-tap-highlight-color: transparent; }
 .site-nav { display: flex; align-items: center; gap: 1.3rem; font-size: .875rem; line-height: 1.5; }
 .site-nav > a:not(.icon-button) { color: var(--text); white-space: nowrap; text-decoration: none; }
 .site-nav > a:hover, .site-nav > a[aria-current="page"] { text-decoration: underline; text-decoration-style: wavy; text-underline-offset: .5em; }
-.language-switch { position: relative; flex: 0 0 auto; }
-.language-switch summary { cursor: pointer; white-space: nowrap; }
-.language-switch ul { position: absolute; z-index: 2; inset-inline-end: 0; min-width: max-content; margin: .5rem 0 0; padding: .3rem; list-style: none; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; }
-.language-switch li > :is(a, span) { display: block; padding: .4rem .65rem; color: var(--text); text-decoration: none; }
-.language-switch li > a:hover { background: var(--soft); color: var(--accent); }
-.language-switch [aria-current], .language-switch small { color: var(--muted); }
+.site-header-multilingual { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title languages" "title navigation"; align-content: center; row-gap: .25rem; }
+.site-header-multilingual > .site-title { grid-area: title; justify-self: start; }
+.site-header-multilingual > .site-nav { grid-area: navigation; justify-content: flex-end; }
+.language-switch { grid-area: languages; justify-self: end; font-size: .75rem; line-height: 1.4; }
+.language-switch ul { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .15rem .25rem; margin: 0; padding: 0; list-style: none; }
+.language-switch li > :is(a, span) { display: flex; align-items: center; gap: .25em; min-height: 32px; padding: .25rem .6rem; border-radius: 4px; color: var(--text); text-decoration: none; }
+.language-switch [aria-current] { background: var(--soft); font-weight: 700; }
+.language-switch a:hover { color: var(--accent); text-decoration: underline; }
+.language-switch small { color: var(--muted); }
 .external-mark { color: var(--muted); font-size: .7rem; margin-left: .15rem; }
 .icon-button { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 36px; flex: 0 0 auto; color: var(--text); border: 0; padding: 0; background: transparent; text-decoration: none; border-radius: 3px; }
 .icon-button:hover { color: var(--accent); background: var(--soft); }
@@ -168,11 +171,17 @@ h1 { font-size: clamp(1.8rem, 3.4vw, 2.3rem); letter-spacing: -.04em; }
   .site-title { font-size: 1.2rem; }
   .site-nav { width: 100%; gap: 1.1rem; }
   .site-nav-multilingual { flex-wrap: wrap; }
+  .site-header-multilingual { grid-template-areas: "title languages" "navigation navigation"; }
+  .site-header-multilingual > .site-nav { justify-content: space-between; }
+  .language-switch li > :is(a, span) { min-height: 44px; }
   .site-nav .icon-button:first-of-type { margin-left: auto; }
 }
 @media (max-width: 480px) {
   .site-shell { width: calc(100% - 2.5rem); }
   .site-header { min-height: 0; }
+  .site-header-multilingual { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "languages" "navigation"; }
+  .language-switch { justify-self: start; }
+  .language-switch ul { justify-content: flex-start; }
   .site-nav { gap: .85rem; font-size: .875rem; justify-content: space-between; }
   .site-nav .icon-button { width: 28px; }
   .site-nav .external-mark { display: none; }
@@ -206,7 +215,7 @@ h1 { font-size: clamp(1.8rem, 3.4vw, 2.3rem); letter-spacing: -.04em; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 @media print {
-  .site-nav, .social-links, .post-toc, .code-toolbar, .post-navigation, .comments { display: none !important; }
+  .site-nav, .language-switch, .social-links, .post-toc, .code-toolbar, .post-navigation, .comments { display: none !important; }
   .site-shell { width: 100%; max-width: none; }
   :root, html[data-theme="dark"] { --bg: #fff; --text: #000; --muted: #444; --code-bg: #f5f5f5; --accent: #000; }
   .prose pre { white-space: pre-wrap; overflow-wrap: anywhere; padding-top: 1rem; }
