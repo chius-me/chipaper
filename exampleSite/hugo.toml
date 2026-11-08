@@ -11,7 +11,33 @@ summaryLength = 80
 
 [languages.zh]
   locale = "zh-CN"
-  label = "中文"
+  label = "简体中文"
+  weight = 1
+
+[languages.zh-tw]
+  locale = "zh-TW"
+  label = "繁體中文"
+  weight = 2
+
+[languages.zh-tw.params]
+  description = "Chipaper 的示範站。單欄、等寬字，中文和英文寫在一起。"
+
+[languages.zh-tw.params.chipaper]
+  greeting = "你好"
+  motto = "寫點中文，也寫點英文。"
+
+[languages.en]
+  locale = "en-US"
+  label = "English"
+  weight = 3
+  hasCJKLanguage = false
+
+[languages.en.params]
+  description = "The Chipaper demo. One column, monospaced type, and Chinese and English side by side."
+
+[languages.en.params.chipaper]
+  greeting = "Hello"
+  motto = "A little Chinese, a little English."
 
 [pagination]
   pagerSize = 10
@@ -50,25 +76,71 @@ summaryLength = 80
   icon = "github"
   url = "https://github.com/chius-me/chipaper"
 
-[[menus.main]]
+[[languages.zh.menus.main]]
   name = "文章"
   pageRef = "posts"
   weight = 10
-[[menus.main]]
+[[languages.zh.menus.main]]
   name = "归档"
   pageRef = "archives"
   weight = 20
-[[menus.main]]
+[[languages.zh.menus.main]]
   name = "标签"
   pageRef = "tags"
   weight = 30
-[[menus.main]]
+[[languages.zh.menus.main]]
   name = "关于"
   pageRef = "about"
   weight = 40
-[[menus.main]]
+[[languages.zh.menus.main]]
   name = "GitHub"
   url = "https://github.com/chius-me/chipaper"
   weight = 50
-  [menus.main.params]
+  [languages.zh.menus.main.params]
+    target = "_blank"
+
+[[languages.zh-tw.menus.main]]
+  name = "文章"
+  pageRef = "posts"
+  weight = 10
+[[languages.zh-tw.menus.main]]
+  name = "彙整"
+  pageRef = "archives"
+  weight = 20
+[[languages.zh-tw.menus.main]]
+  name = "標籤"
+  pageRef = "tags"
+  weight = 30
+[[languages.zh-tw.menus.main]]
+  name = "關於"
+  pageRef = "about"
+  weight = 40
+[[languages.zh-tw.menus.main]]
+  name = "GitHub"
+  url = "https://github.com/chius-me/chipaper"
+  weight = 50
+  [languages.zh-tw.menus.main.params]
+    target = "_blank"
+
+[[languages.en.menus.main]]
+  name = "Posts"
+  pageRef = "posts"
+  weight = 10
+[[languages.en.menus.main]]
+  name = "Archives"
+  pageRef = "archives"
+  weight = 20
+[[languages.en.menus.main]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 30
+[[languages.en.menus.main]]
+  name = "About"
+  pageRef = "about"
+  weight = 40
+[[languages.en.menus.main]]
+  name = "GitHub"
+  url = "https://github.com/chius-me/chipaper"
+  weight = 50
+  [languages.en.menus.main.params]
     target = "_blank"
