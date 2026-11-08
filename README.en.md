@@ -1,8 +1,25 @@
+<div align="right">
+  <a href="./README.md">中文</a> | English
+</div>
+
+<div align="center">
+
 # Chipaper
 
-The Hugo theme I use for my own blog. One column, monospace type, Chinese and English in the same post. The look comes from [AstroPaper](https://github.com/satnaing/astro-paper) and [Archie](https://github.com/athul/archie).
+A clean, monospace Hugo theme for personal blogs with mixed Chinese and English typography.
 
-[Live demo](https://chius-me.github.io/chipaper/) · [Chius's blog](https://chius.cc/) · [中文文档](https://github.com/chius-me/chipaper/blob/main/README.md)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Hugo](https://img.shields.io/badge/Hugo-Extended%200.160+-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/)
+[![Pages](https://github.com/chius-me/chipaper/actions/workflows/pages.yml/badge.svg)](https://github.com/chius-me/chipaper/actions)
+[![Demo](https://img.shields.io/badge/Demo-Online%20Preview-brightgreen)](https://chius-me.github.io/chipaper/)
+
+[Live Demo](https://chius-me.github.io/chipaper/) · [Chius's Blog](https://chius.cc/) · [Submission Notes](docs/HUGO_THEMES_SUBMISSION.md)
+
+</div>
+
+---
+
+The look comes from [AstroPaper](https://github.com/satnaing/astro-paper) and [Archie](https://github.com/athul/archie).
 
 ![Chipaper home page](https://raw.githubusercontent.com/chius-me/chipaper/main/images/screenshot.jpg)
 
@@ -94,3 +111,9 @@ Update an installed copy with `git submodule update --remote themes/chipaper`, l
 Theme code is [MIT](https://github.com/chius-me/chipaper/blob/main/LICENSE). The fonts keep their SIL Open Font Licenses.
 
 Templates and scripts are written for Hugo. AstroPaper and Archie are visual references. Upstream projects, the files this theme looked at, and the full license texts are in [THIRD_PARTY_NOTICES.md](https://github.com/chius-me/chipaper/blob/main/THIRD_PARTY_NOTICES.md).
+
+---
+
+<div align="center">
+  <sub>Crafted with ❤️ by <a href="https://chius.cc">Chius</a> · Powered by Hugo & GitHub Pages</sub>
+</div>

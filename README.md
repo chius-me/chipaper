@@ -1,8 +1,25 @@
+<div align="right">
+  中文 | <a href="./README.en.md">English</a>
+</div>
+
+<div align="center">
+
 # Chipaper
 
-我给自己博客用的 Hugo 主题。单栏，等宽字，中文和英文写在一起。样子参考了 [AstroPaper](https://github.com/satnaing/astro-paper) 和 [Archie](https://github.com/athul/archie)。
+我给自己博客用的 Hugo 主题。单栏，等宽字，中英文优雅混排。
 
-[在线 Demo](https://chius-me.github.io/chipaper/) · [我的博客](https://chius.cc/) · [English](https://github.com/chius-me/chipaper/blob/main/README.en.md)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Hugo](https://img.shields.io/badge/Hugo-Extended%200.160+-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/)
+[![Pages](https://github.com/chius-me/chipaper/actions/workflows/pages.yml/badge.svg)](https://github.com/chius-me/chipaper/actions)
+[![Demo](https://img.shields.io/badge/Demo-Online%20Preview-brightgreen)](https://chius-me.github.io/chipaper/)
+
+[在线演示](https://chius-me.github.io/chipaper/) · [我的博客](https://chius.cc/) · [主题收录笔记](docs/HUGO_THEMES_SUBMISSION.md)
+
+</div>
+
+---
+
+样子参考了 [AstroPaper](https://github.com/satnaing/astro-paper) 和 [Archie](https://github.com/athul/archie)。
 
 ![Chipaper 首页](https://raw.githubusercontent.com/chius-me/chipaper/main/images/screenshot.jpg)
 
@@ -226,3 +243,9 @@ git commit -m "Update Chipaper"
 模板和页面脚本是按 Hugo 写的。AstroPaper 和 Archie 是样子上的参考。参考了哪些文件、许可证全文，见 [`THIRD_PARTY_NOTICES.md`](https://github.com/chius-me/chipaper/blob/main/THIRD_PARTY_NOTICES.md)。
 
 往 Hugo 官方目录送主题的记录在 [Hugo Themes 收录笔记](https://github.com/chius-me/chipaper/blob/main/docs/HUGO_THEMES_SUBMISSION.md)。
+
+---
+
+<div align="center">
+  <sub>Crafted with ❤️ by <a href="https://chius.cc">Chius</a> · Powered by Hugo & GitHub Pages</sub>
+</div>
