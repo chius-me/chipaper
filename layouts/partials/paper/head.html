@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
 {{ $description := .Description }}
@@ -24,7 +24,9 @@
 {{ else }}<meta name="twitter:card" content="summary">{{ end }}
 <meta name="twitter:title" content="{{ .Title | default .Site.Title }}">
 <meta name="twitter:description" content="{{ $description }}">
-{{ if hugo.IsServer }}<meta name="robots" content="noindex, nofollow">{{ end }}
+{{ if hugo.IsServer }}<meta name="robots" content="noindex, nofollow">{{ else if eq .Kind "404" }}<meta name="robots" content="noindex">{{ end }}
+<meta name="theme-color" content="#fdfcfb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#202530" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
 {{ if fileExists "static/apple-touch-icon.png" }}<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">{{ end }}
 {{ with .Site.Home.OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .RelPermalink }}">{{ end }}

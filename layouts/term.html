@@ -1,3 +1,6 @@
 {{ define "main" }}
-<section class="listing-page"><header class="page-header"><p class="eyebrow">TOPIC</p><h1><span class="accent">#</span> {{ .Title }}</h1></header>{{ partial "paper/post-list.html" .Pages.ByDate.Reverse }}</section>
+<section class="listing-page">
+  <header class="page-header"><h1><span class="accent" aria-hidden="true">#</span> {{ .Title }}</h1></header>
+  {{ partial "paper/post-list.html" .Pages.ByDate.Reverse }}
+</section>
 {{ end }}

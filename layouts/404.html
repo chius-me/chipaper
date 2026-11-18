@@ -1,1 +1,9 @@
-{{ define "main" }}<section class="listing-page"><header class="page-header"><p class="eyebrow">404 / NOT FOUND</p><h1>{{ T "not_found" }}<span class="accent">.</span></h1></header><p><a href="{{ .Site.Home.RelPermalink }}">{{ T "back_home" }} →</a></p></section>{{ end }}
+{{ define "main" }}
+<section class="listing-page">
+  <header class="page-header">
+    <p class="eyebrow" aria-hidden="true">404</p>
+    <h1>{{ T "not_found" }}<span class="accent" aria-hidden="true">.</span></h1>
+  </header>
+  <p><a class="back-home" href="{{ .Site.Home.RelPermalink }}">{{ T "back_home" }} <span aria-hidden="true">→</span></a></p>
+</section>
+{{ end }}

@@ -15,8 +15,8 @@
     <footer class="post-end">
       <p class="end-mark">{{ T "post_end" }}<span class="accent" aria-hidden="true">.</span></p>
       <div class="post-navigation">
-        {{ with .PrevInSection }}<a href="{{ .RelPermalink }}"><span>← {{ T "older_post" }}</span><strong>{{ .Title }}</strong></a>{{ end }}
-        {{ with .NextInSection }}<a class="next-post" href="{{ .RelPermalink }}"><span>{{ T "newer_post" }} →</span><strong>{{ .Title }}</strong></a>{{ end }}
+        {{ with .PrevInSection }}<a href="{{ .RelPermalink }}"><span><span aria-hidden="true">←</span> {{ T "older_post" }}</span><strong>{{ .Title }}</strong></a>{{ end }}
+        {{ with .NextInSection }}<a class="next-post" href="{{ .RelPermalink }}"><span>{{ T "newer_post" }} <span aria-hidden="true">→</span></span><strong>{{ .Title }}</strong></a>{{ end }}
       </div>
       {{ if and .Site.Params.chipaper.comments (ne .Params.showComments false) }}{{ partial "paper/comments.html" . }}{{ end }}
     </footer>

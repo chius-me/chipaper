@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section class="listing-page">
-  <header class="page-header"><p class="eyebrow">SEARCH</p><h1>{{ .Title }}<span class="accent">.</span></h1></header>
+  <header class="page-header"><h1>{{ .Title }}<span class="accent" aria-hidden="true">.</span></h1></header>
   <form class="search-form" role="search">
     <label for="search-input">{{ if ne .Site.Params.chipaper.showTags false }}{{ T "search_label_tags" }}{{ else }}{{ T "search_label" }}{{ end }}</label>
     <div class="search-field">

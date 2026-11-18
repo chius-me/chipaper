@@ -1,0 +1,27 @@
+{{- $dest := .Destination -}}
+{{- $isRemote := strings.HasPrefix $dest "http://" | or (strings.HasPrefix $dest "https://") | or (strings.HasPrefix $dest "//") -}}
+{{- $res := false -}}
+{{- if not $isRemote -}}
+  {{- $res = .Page.Resources.GetMatch $dest -}}
+  {{- if not $res }}{{ $res = resources.Get $dest }}{{ end -}}
+{{- end -}}
+{{- $src := $dest -}}
+{{- $width := "" -}}
+{{- $height := "" -}}
+{{- with $res -}}
+  {{- $src = .RelPermalink -}}
+  {{- if eq .MediaType.MainType "image" -}}
+    {{- if ne .MediaType.SubType "svg" -}}
+      {{- $width = .Width -}}
+      {{- $height = .Height -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if .Title -}}
+<figure>
+  <img src="{{ $src | safeURL }}" alt="{{ .PlainText }}"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }} loading="lazy" decoding="async">
+  <figcaption>{{ .Title }}</figcaption>
+</figure>
+{{- else -}}
+<img src="{{ $src | safeURL }}" alt="{{ .PlainText }}"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }} loading="lazy" decoding="async">
+{{- end -}}
